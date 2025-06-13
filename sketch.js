@@ -1,7 +1,7 @@
 let vehicles = [];
 
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(windowWidth, windowHeight);
   for (let i = 0; i < 100; i++) {
     vehicles.push(new Vehicle(random(width), random(height)));
   }
@@ -17,6 +17,10 @@ function draw() {
     v.borders();
     v.display();
   }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 class Vehicle {
