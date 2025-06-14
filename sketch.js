@@ -175,7 +175,7 @@ class Animal {
 
 class Food {
   constructor(x, y) {
-    this.size = random(6, 20);
+    this.size = random(6, 50);
     this.pos = createVector(x, y);
   }
 
