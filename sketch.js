@@ -1,11 +1,11 @@
 let animals = [];
 let foods = [];
 const attractionRadius = 100;
-const foodSpawnInterval = 240;
+const foodSpawnInterval = 100;
 let frameCounter = 0;
 
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(windowWidth, windowHeight);
   for (let i = 0; i < 60; i++) {
     animals.push(new Animal(random(width), random(height)));
   }
@@ -39,6 +39,16 @@ function draw() {
   }
 }
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  
+  // Ajustar animales dentro del área visible para evitar que queden fuera en redimensionamiento
+  for (let a of animals) {
+    a.position.x = constrain(a.position.x, -a.r, width + a.r);
+    a.position.y = constrain(a.position.y, -a.r, height + a.r);
+  }
+}
+
 // === CLASES ===
 
 class Animal {
@@ -50,7 +60,7 @@ class Animal {
     this.baseSpeed = 2.5;
     this.maxspeed = this.baseSpeed;
     this.maxforce = 0.05;
-    this.targetFood = null;  // comida que está comiendo actualmente
+    this.targetFood = null;
   }
 
   applyForce(force) {
@@ -75,7 +85,6 @@ class Animal {
     }
 
     if (closest !== null) {
-      // Contar competidores
       for (let o of others) {
         if (o !== this && p5.Vector.dist(o.position, closest.pos) < attractionRadius) {
           competitors++;
@@ -84,12 +93,10 @@ class Animal {
 
       this.maxspeed = this.baseSpeed / sqrt(competitors + 1);
 
-      // Buscar comida
       let seek = this.seek(closest.pos);
       seek.mult(1.0);
       this.applyForce(seek);
 
-      // Comer y asignar comida objetivo
       let edgeDistance = this.r + closest.size / 2;
       if (minDist < edgeDistance && closest.size > 0) {
         closest.size -= 2;
@@ -141,7 +148,6 @@ class Animal {
   }
 
   update() {
-    // Queda quieto mientras la comida objetivo siga existiendo y tenga tamaño > 0
     if (this.targetFood !== null && this.targetFood.size > 0) {
       this.acceleration.mult(0);
       this.velocity.mult(0);
@@ -174,7 +180,7 @@ class Food {
   }
 
   update() {
-    this.size -= 0.01; // desaparición natural
+    this.size -= 0.01;
     this.size = max(0, this.size);
   }
 
