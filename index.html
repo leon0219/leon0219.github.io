@@ -5,56 +5,18 @@
   <title>Astroanim</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="p5.min.js"></script>
+  <script src="sketch.js"></script>
   <style>
     body {
       margin: 0;
       overflow: hidden;
     }
-    #canvas-container {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-    }
-    button {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 10;
-      padding: 6px 12px;
-      font-size: 14px;
+    canvas {
+      display: block;
     }
   </style>
 </head>
 <body>
-  <div id="canvas-container">
-    <button id="switchScene">Cambiar escena</button>
-  </div>
-
-  <script>
-    let currentScene = 1;
-    let p5Instance;
-
-    function loadScene(scriptUrl) {
-      if (p5Instance) p5Instance.remove();
-
-      const oldScript = document.getElementById('scene-script');
-      if (oldScript) oldScript.remove();
-
-      const script = document.createElement('script');
-      script.src = scriptUrl + '?t=' + new Date().getTime(); // evita caché
-      script.id = 'scene-script';
-      script.onload = () => {
-        p5Instance = new p5(sketch, document.getElementById('canvas-container'));
-      };
-      document.body.appendChild(script);
-    }
-
-    document.getElementById('switchScene').addEventListener('click', () => {
-      currentScene = currentScene === 1 ? 2 : 1;
-      loadScene(`scene${currentScene}.js`);
-    });
-
-    loadScene('scene1.js'); // Cargar al inicio
-  </script>
 </body>
 </html>
+
