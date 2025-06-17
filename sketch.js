@@ -1,5 +1,3 @@
-let currentScene = 1;
-
 let animals = [];
 let foods = [];
 const attractionRadius = 100;
@@ -10,64 +8,14 @@ const MAX_FOOD = 50;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  initScene1();
-  initScene2();
-}
-
-function draw() {
-  background(30);
-  if (currentScene === 1) {
-    drawScene1();
-  } else {
-    drawScene2();
-  }
-}
-
-function mousePressed() {
-  // Cambia de escena al tocar/click en el canvas
-  currentScene = (currentScene === 1) ? 2 : 1;
-}
-
-// --- ESCENA 1: círculos moviéndose aleatoriamente ---
-
-let circles = [];
-
-function initScene1() {
-  circles = [];
-  for (let i = 0; i < 20; i++) {
-    circles.push({
-      pos: createVector(random(width), random(height)),
-      vel: p5.Vector.random2D().mult(2),
-      r: random(15, 30),
-      col: color(random(100, 255), random(100, 255), random(100, 255))
-    });
-  }
-}
-
-function drawScene1() {
-  for (let c of circles) {
-    c.pos.add(c.vel);
-    // rebote en bordes
-    if (c.pos.x < c.r || c.pos.x > width - c.r) c.vel.x *= -1;
-    if (c.pos.y < c.r || c.pos.y > height - c.r) c.vel.y *= -1;
-    fill(c.col);
-    noStroke();
-    ellipse(c.pos.x, c.pos.y, c.r * 2);
-  }
-}
-
-// --- ESCENA 2: simulación de animales y comida ---
-
-function initScene2() {
-  animals = [];
-  foods = [];
-  frameCounter = 0;
   for (let i = 0; i < 10; i++) {
     animals.push(new Animal(random(width), random(height)));
   }
 }
 
-function drawScene2() {
+function draw() {
+  background(30);
+
   frameCounter++;
   if (frameCounter % foodSpawnInterval === 0 && foods.length < MAX_FOOD) {
     foods.push(new Food(random(width), random(height)));
@@ -93,7 +41,7 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-// --- CLASES: Food, Component, Animal (copiados de tu código) ---
+// === CLASES ===
 
 class Food {
   constructor(x, y) {
@@ -295,3 +243,4 @@ class Animal {
     if (this.position.y > height + this.r) this.position.y = -this.r;
   }
 }
+
