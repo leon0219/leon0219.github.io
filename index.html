@@ -3,248 +3,338 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo Nicolás Hernández - CV</title>
+    <title>Leonardo Nicolás Hernández - CV Material</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Diseño Minimalista */
+        /* Paleta de Colores Material Design */
         :root {
-            --bg-color: #fafafa;
-            --text-color: #222;
-            --accent-color: #555;
-            --border-color: #eaeaea;
-            --hover-bg: #f0f0f0;
+            --bg-color: #f5f5f6; /* Gris muy claro para el fondo */
+            --surface-color: #ffffff; /* Blanco para las tarjetas */
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --accent-color: #6200ea; /* Deep Purple 700 */
+            --divider-color: #e0e0e0;
+            --shadow-1: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+            --shadow-2: 0 3px 3px -2px rgba(0,0,0,.2), 0 3px 4px 0 rgba(0,0,0,.14), 0 1px 8px 0 rgba(0,0,0,.12);
         }
 
+        /* Material Dark Theme */
         body.dark-mode {
             --bg-color: #121212;
-            --text-color: #f0f0f0;
-            --accent-color: #aaa;
-            --border-color: #333;
-            --hover-bg: #1e1e1e;
+            --surface-color: #1e1e1e; /* Gris oscuro para elevación */
+            --text-primary: #e0e0e0;
+            --text-secondary: #aaaaaa;
+            --accent-color: #b388ff; /* Deep Purple A100 (más brillante en oscuro) */
+            --divider-color: #333333;
+            --shadow-1: 0 2px 1px -1px rgba(0,0,0,.4), 0 1px 1px 0 rgba(0,0,0,.28), 0 1px 3px 0 rgba(0,0,0,.24);
+            --shadow-2: 0 3px 3px -2px rgba(0,0,0,.4), 0 3px 4px 0 rgba(0,0,0,.28), 0 1px 8px 0 rgba(0,0,0,.24);
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
+            font-family: 'Roboto', sans-serif;
             background-color: var(--bg-color);
-            max-width: 800px;
-            margin: 0 auto;
+            color: var(--text-primary);
+            margin: 0;
             padding: 40px 20px;
             transition: background-color 0.3s ease, color 0.3s ease;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Tarjetas Material (Cards) */
+        .card {
+            background-color: var(--surface-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow-1);
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         header {
-            margin-bottom: 40px;
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
+            align-items: flex-start;
+            margin-bottom: 30px;
         }
 
         h1 {
             margin: 0;
-            font-size: 2em;
-            font-weight: 600;
-            letter-spacing: -0.5px;
+            font-size: 2.125rem;
+            font-weight: 500;
+            letter-spacing: -0.01562em;
+        }
+
+        .header-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 400;
+            margin-top: 4px;
         }
 
         h2 {
-            font-size: 1.2em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 1.25rem;
+            font-weight: 500;
             color: var(--accent-color);
-            margin-top: 40px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 5px;
+            letter-spacing: 0.0075em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: 8px;
         }
 
         .item {
             margin-bottom: 20px;
         }
 
+        .item:last-child {
+            margin-bottom: 0;
+        }
+
         .title-row {
             display: flex;
             justify-content: space-between;
-            font-weight: bold;
+            font-weight: 500;
+            font-size: 1rem;
         }
 
         .subtitle {
-            font-style: italic;
-            color: var(--accent-color);
-            font-size: 0.9em;
-            margin-bottom: 5px;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-top: 2px;
+            margin-bottom: 8px;
         }
 
         ul {
             padding-left: 20px;
             margin-top: 5px;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
         }
 
-        /* Estilos para el Menú Desplegable */
+        li {
+            margin-bottom: 4px;
+        }
+
+        /* Material Expansion Panels */
         details {
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            margin-bottom: 10px;
-            overflow: hidden;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        details:last-child {
+            border-bottom: none;
         }
 
         summary {
-            padding: 12px 15px;
-            font-weight: bold;
+            padding: 16px 0;
+            font-weight: 500;
             cursor: pointer;
-            background-color: var(--bg-color);
-            transition: background-color 0.2s ease;
-            list-style: none; /* Oculta la flecha por defecto en algunos navegadores */
+            list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: color 0.2s ease;
         }
 
         summary::-webkit-details-marker {
-            display: none; /* Oculta la flecha en Safari/Chrome antiguo */
+            display: none;
         }
 
         summary:hover {
-            background-color: var(--hover-bg);
+            color: var(--accent-color);
         }
 
         summary::after {
-            content: '+';
-            font-size: 1.2em;
-            color: var(--accent-color);
+            content: '▼';
+            font-size: 0.8em;
+            color: var(--text-secondary);
             transition: transform 0.3s ease;
         }
 
         details[open] summary::after {
-            transform: rotate(45deg); /* Cambia el + a una x al abrir */
+            transform: rotate(180deg);
         }
 
         details[open] summary {
-            border-bottom: 1px solid var(--border-color);
+            color: var(--accent-color);
         }
 
         .details-content {
-            padding: 15px;
-            font-size: 0.95em;
+            padding: 0 0 16px 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
         }
 
-        /* Botón interactivo */
-        .theme-btn {
-            background: none;
-            border: 1px solid var(--text-color);
-            color: var(--text-color);
-            padding: 5px 10px;
-            font-size: 0.8em;
+        /* Botón Material (Outlined) */
+        .md-btn {
+            background: transparent;
+            border: 1px solid var(--divider-color);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            font-size: 0.875rem;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08928em;
             cursor: pointer;
             border-radius: 4px;
-            transition: all 0.2s;
+            transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s;
         }
 
-        .theme-btn:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
+        .md-btn:hover {
+            background-color: rgba(98, 0, 234, 0.04);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
         }
+
+        body.dark-mode .md-btn:hover {
+            background-color: rgba(179, 136, 255, 0.08);
+        }
+
+        /* Etiquetas (Chips) para habilidades */
+        .chip-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .chip {
+            background-color: rgba(0, 0, 0, 0.08);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.875rem;
+        }
+
+        body.dark-mode .chip {
+            background-color: rgba(255, 255, 255, 0.12);
+        }
+
     </style>
 </head>
 <body>
 
-    <header>
-        <div>
-            <h1>Leonardo Nicolás Hernández</h1>
-            <p>Ingeniería Eléctrica y Electrónica</p>
-        </div>
-        <button class="theme-btn" id="themeToggle">🌓 Modo Oscuro</button>
-    </header>
-
-    <section>
-        <h2>Experiencia Profesional</h2>
-        
-        <div class="item">
-            <div class="title-row">
-                <span>Design Intern</span>
-                <span>Ene 2026 - Presente</span>
+    <div class="container">
+        <header>
+            <div>
+                <h1>Leonardo N. Hernández</h1>
+                <div class="header-subtitle">Ingeniería Eléctrica y Electrónica</div>
             </div>
-            <div class="subtitle">Chamberlain Group | Nogales, Sonora</div>
-            <ul>
-                <li>Verificación de diseño de hardware y soporte en el desarrollo de proyectos electrónicos.</li>
-            </ul>
-        </div>
+            <button class="md-btn" id="themeToggle">Modo Oscuro</button>
+        </header>
 
-        <div class="item">
-            <div class="title-row">
-                <span>BioMEMS Research Intern</span>
-                <span>May 2024 - Nov 2024</span>
+        <section class="card">
+            <h2>Experiencia Profesional</h2>
+            
+            <div class="item">
+                <div class="title-row">
+                    <span>Design Intern</span>
+                    <span style="color: var(--text-secondary); font-weight: 400; font-size: 0.875rem;">Ene 2026 - Presente</span>
+                </div>
+                <div class="subtitle">Chamberlain Group | Nogales, Sonora</div>
+                <ul>
+                    <li>Verificación de diseño de hardware y soporte en el desarrollo de proyectos electrónicos.</li>
+                </ul>
             </div>
-            <div class="subtitle">Instituto de Ingeniería, UNAM | Ciudad de México</div>
-            <ul>
-                <li>Desarrollo de procesos de electrohilado y análisis mediante Microscopía Electrónica de Barrido (SEM).</li>
-            </ul>
-        </div>
-    </section>
 
-    <section>
-        <h2>Educación</h2>
-        
-        <div class="item">
-            <div class="title-row">
-                <span>Ingeniería Eléctrica y Electrónica (Especialidad: Electrónica)</span>
-                <span>Graduación: 2026</span>
+            <div class="item" style="margin-top: 20px;">
+                <div class="title-row">
+                    <span>BioMEMS Research Intern</span>
+                    <span style="color: var(--text-secondary); font-weight: 400; font-size: 0.875rem;">May 2024 - Nov 2024</span>
+                </div>
+                <div class="subtitle">Instituto de Ingeniería, UNAM | Ciudad de México</div>
+                <ul>
+                    <li>Desarrollo de procesos de electrohilado y análisis mediante Microscopía Electrónica de Barrido (SEM).</li>
+                </ul>
             </div>
-            <div class="subtitle">Universidad Nacional Autónoma de México (UNAM)</div>
-        </div>
+        </section>
 
-        <div class="item">
-            <div class="title-row">
-                <span>Técnico en Sistemas Digitales</span>
+        <section class="card">
+            <h2>Educación</h2>
+            
+            <div class="item">
+                <div class="title-row">
+                    <span>Ingeniería Eléctrica y Electrónica (Electrónica)</span>
+                    <span style="color: var(--text-secondary); font-weight: 400; font-size: 0.875rem;">Graduación: 2026</span>
+                </div>
+                <div class="subtitle">Universidad Nacional Autónoma de México (UNAM)</div>
             </div>
-            <div class="subtitle">CECyT 9, Instituto Politécnico Nacional (IPN)</div>
-        </div>
-    </section>
 
-    <section>
-        <h2>Proyectos y Publicaciones (Interactivo)</h2>
-        
-        <details>
-            <summary>IAC 2025: Búsqueda de vida en lunas heladas</summary>
-            <div class="details-content">
-                <p><strong>Rol:</strong> Autor principal.</p>
-                <p><strong>Evento:</strong> 76th International Astronautical Congress (Sídney, Australia - Sep 2025).</p>
-                <p><strong>Descripción:</strong> Presentación del artículo <em>"Microfluidic technologies for the search for life on icy moons"</em>. Investigación enfocada en el desarrollo y aplicación de tecnologías microfluídicas viables para la exploración planetaria in-situ y astrobiología.</p>
+            <div class="item" style="margin-top: 15px;">
+                <div class="title-row">
+                    <span>Técnico en Sistemas Digitales</span>
+                </div>
+                <div class="subtitle">CECyT 9, Instituto Politécnico Nacional (IPN)</div>
             </div>
-        </details>
+        </section>
 
-        <details>
-            <summary>Sistemas de Potencia y Amplificadores para CubeSats</summary>
-            <div class="details-content">
-                <p><strong>Estado:</strong> Tesis en desarrollo.</p>
-                <p><strong>Descripción:</strong> Diseño y análisis de amplificadores de potencia Clase E para plataformas de pequeños satélites. Incluye el análisis de Parámetros de Dispersión (Parámetros S) y el desarrollo de arquitecturas para la generación y gestión de presupuestos energéticos en CubeSats.</p>
+        <section class="card">
+            <h2>Proyectos y Publicaciones</h2>
+            
+            <details>
+                <summary>IAC 2025: Búsqueda de vida en lunas heladas</summary>
+                <div class="details-content">
+                    <p><strong>Rol:</strong> Autor principal.</p>
+                    <p><strong>Evento:</strong> 76th International Astronautical Congress (Sídney, Australia - Sep 2025).</p>
+                    <p><strong>Descripción:</strong> Presentación del artículo <em>"Microfluidic technologies for the search for life on icy moons"</em>. Investigación enfocada en el desarrollo y aplicación de tecnologías microfluídicas viables para la exploración planetaria in-situ y astrobiología.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Potencia y Amplificadores para CubeSats</summary>
+                <div class="details-content">
+                    <p><strong>Estado:</strong> Tesis en desarrollo.</p>
+                    <p><strong>Descripción:</strong> Diseño y análisis de amplificadores de potencia Clase E para plataformas de pequeños satélites. Incluye el análisis de Parámetros de Dispersión (Parámetros S) y el desarrollo de arquitecturas para la gestión energética en CubeSats.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Proyecto KANAN SIAFI: Visión Artificial y Drones</summary>
+                <div class="details-content">
+                    <p><strong>Periodo:</strong> Sep 2021 - Ene 2022</p>
+                    <p><strong>Descripción:</strong> Participación en el desarrollo e implementación de sistemas de visión artificial y rutinas de control para la operación de drones.</p>
+                </div>
+            </details>
+        </section>
+
+        <section class="card">
+            <h2>Habilidades Técnicas</h2>
+            <div class="title-row" style="margin-bottom: 8px;">Software & Lenguajes</div>
+            <div class="chip-container">
+                <span class="chip">Altium Designer</span>
+                <span class="chip">MATLAB</span>
+                <span class="chip">Simulink</span>
+                <span class="chip">Python</span>
+                <span class="chip">C</span>
             </div>
-        </details>
 
-        <details>
-            <summary>Proyecto KANAN SIAFI: Visión Artificial y Drones</summary>
-            <div class="details-content">
-                <p><strong>Periodo:</strong> Sep 2021 - Ene 2022</p>
-                <p><strong>Descripción:</strong> Participación en el desarrollo e implementación de sistemas de visión artificial y rutinas de control para la operación de drones.</p>
+            <div class="title-row" style="margin-top: 20px; margin-bottom: 8px;">Áreas de Interés</div>
+            <div class="chip-container">
+                <span class="chip">Radiofrecuencia (RF)</span>
+                <span class="chip">BioMEMS</span>
+                <span class="chip">Astrobiología</span>
+                <span class="chip">Instrumentación Espacial</span>
             </div>
-        </details>
-    </section>
-
-    <section>
-        <h2>Habilidades Técnicas</h2>
-        <p><strong>Software & Lenguajes:</strong> Altium Designer, MATLAB, Simulink, Python, C.</p>
-        <p><strong>Áreas de Interés:</strong> Radiofrecuencia (RF), BioMEMS, Astrobiología, Instrumentación Espacial.</p>
-    </section>
+        </section>
+    </div>
 
     <script>
         const btn = document.getElementById('themeToggle');
         btn.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             if (document.body.classList.contains('dark-mode')) {
-                btn.textContent = '☀️ Modo Claro';
+                btn.textContent = 'Modo Claro';
             } else {
-                btn.textContent = '🌓 Modo Oscuro';
+                btn.textContent = 'Modo Oscuro';
             }
         });
     </script>
