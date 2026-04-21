@@ -1,22 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Astroanim</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="p5.min.js"></script>
-  <script src="sketch.js"></script>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-    }
-    canvas {
-      display: block;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo Nicolás Hernández - CV</title>
+    <style>
+        /* Diseño Minimalista */
+        :root {
+            --bg-color: #fafafa;
+            --text-color: #222;
+            --accent-color: #555;
+            --border-color: #eaeaea;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #f0f0f0;
+            --accent-color: #aaa;
+            --border-color: #333;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+            margin-top: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .item {
+            margin-bottom: 20px;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-style: italic;
+            color: var(--accent-color);
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        /* Botón interactivo */
+        .theme-btn {
+            background: none;
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+            padding: 5px 10px;
+            font-size: 0.8em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .theme-btn:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+    </style>
 </head>
 <body>
+
+    <header>
+        <div>
+            <h1>Leonardo Nicolás Hernández</h1>
+            <p>Ingeniería Eléctrica y Electrónica</p>
+        </div>
+        <button class="theme-btn" id="themeToggle">🌓 Modo Oscuro</button>
+    </header>
+
+    <section>
+        <h2>Experiencia Profesional</h2>
+        
+        <div class="item">
+            <div class="title-row">
+                <span>Design Intern</span>
+                <span>Ene 2026 - Presente</span>
+            </div>
+            <div class="subtitle">Chamberlain Group | Nogales, Sonora</div>
+            <ul>
+                <li>Verificación de diseño de hardware y soporte en el desarrollo de proyectos electrónicos.</li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <div class="title-row">
+                <span>BioMEMS Research Intern</span>
+                <span>May 2024 - Nov 2024</span>
+            </div>
+            <div class="subtitle">Instituto de Ingeniería, UNAM | Ciudad de México</div>
+            <ul>
+                <li>Desarrollo de procesos de electrohilado y análisis mediante Microscopía Electrónica de Barrido (SEM).</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Educación</h2>
+        
+        <div class="item">
+            <div class="title-row">
+                <span>Ingeniería Eléctrica y Electrónica (Especialidad en Electrónica)</span>
+                <span>Graduación: 2026</span>
+            </div>
+            <div class="subtitle">Universidad Nacional Autónoma de México (UNAM)</div>
+        </div>
+
+        <div class="item">
+            <div class="title-row">
+                <span>Técnico en Sistemas Digitales</span>
+            </div>
+            <div class="subtitle">CECyT 9, Instituto Politécnico Nacional (IPN)</div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Proyectos y Publicaciones</h2>
+        <ul>
+            <li><strong>IAC 2025 (Sídney, Australia):</strong> Autor principal del artículo <em>"Microfluidic technologies for the search for life on icy moons"</em>.</li>
+            <li><strong>Tesis en Desarrollo:</strong> Diseño y análisis de amplificadores de potencia Clase E y gestión de presupuesto energético para plataformas CubeSat.</li>
+            <li><strong>Proyecto KANAN SIAFI:</strong> Implementación de visión artificial y desarrollo de rutinas de control para drones (Sep 2021 - Ene 2022).</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Habilidades Técnicas</h2>
+        <p><strong>Software & Lenguajes:</strong> Altium Designer, MATLAB, Simulink, Python, C.</p>
+        <p><strong>Áreas de Interés:</strong> Radiofrecuencia (RF), BioMEMS, Astrobiología, Instrumentación Espacial.</p>
+    </section>
+
+    <script>
+        const btn = document.getElementById('themeToggle');
+        btn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                btn.textContent = '☀️ Modo Claro';
+            } else {
+                btn.textContent = '🌓 Modo Oscuro';
+            }
+        });
+    </script>
+
 </body>
 </html>
-
