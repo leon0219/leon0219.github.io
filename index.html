@@ -11,6 +11,7 @@
             --text-color: #222;
             --accent-color: #555;
             --border-color: #eaeaea;
+            --hover-bg: #f0f0f0;
         }
 
         body.dark-mode {
@@ -18,6 +19,7 @@
             --text-color: #f0f0f0;
             --accent-color: #aaa;
             --border-color: #333;
+            --hover-bg: #1e1e1e;
         }
 
         body {
@@ -79,6 +81,54 @@
             margin-top: 5px;
         }
 
+        /* Estilos para el Menú Desplegable */
+        details {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 12px 15px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: var(--bg-color);
+            transition: background-color 0.2s ease;
+            list-style: none; /* Oculta la flecha por defecto en algunos navegadores */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker {
+            display: none; /* Oculta la flecha en Safari/Chrome antiguo */
+        }
+
+        summary:hover {
+            background-color: var(--hover-bg);
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.2em;
+            color: var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(45deg); /* Cambia el + a una x al abrir */
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .details-content {
+            padding: 15px;
+            font-size: 0.95em;
+        }
+
         /* Botón interactivo */
         .theme-btn {
             background: none;
@@ -138,7 +188,7 @@
         
         <div class="item">
             <div class="title-row">
-                <span>Ingeniería Eléctrica y Electrónica (Especialidad en Electrónica)</span>
+                <span>Ingeniería Eléctrica y Electrónica (Especialidad: Electrónica)</span>
                 <span>Graduación: 2026</span>
             </div>
             <div class="subtitle">Universidad Nacional Autónoma de México (UNAM)</div>
@@ -153,12 +203,32 @@
     </section>
 
     <section>
-        <h2>Proyectos y Publicaciones</h2>
-        <ul>
-            <li><strong>IAC 2025 (Sídney, Australia):</strong> Autor principal del artículo <em>"Microfluidic technologies for the search for life on icy moons"</em>.</li>
-            <li><strong>Tesis en Desarrollo:</strong> Diseño y análisis de amplificadores de potencia Clase E y gestión de presupuesto energético para plataformas CubeSat.</li>
-            <li><strong>Proyecto KANAN SIAFI:</strong> Implementación de visión artificial y desarrollo de rutinas de control para drones (Sep 2021 - Ene 2022).</li>
-        </ul>
+        <h2>Proyectos y Publicaciones (Interactivo)</h2>
+        
+        <details>
+            <summary>IAC 2025: Búsqueda de vida en lunas heladas</summary>
+            <div class="details-content">
+                <p><strong>Rol:</strong> Autor principal.</p>
+                <p><strong>Evento:</strong> 76th International Astronautical Congress (Sídney, Australia - Sep 2025).</p>
+                <p><strong>Descripción:</strong> Presentación del artículo <em>"Microfluidic technologies for the search for life on icy moons"</em>. Investigación enfocada en el desarrollo y aplicación de tecnologías microfluídicas viables para la exploración planetaria in-situ y astrobiología.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Sistemas de Potencia y Amplificadores para CubeSats</summary>
+            <div class="details-content">
+                <p><strong>Estado:</strong> Tesis en desarrollo.</p>
+                <p><strong>Descripción:</strong> Diseño y análisis de amplificadores de potencia Clase E para plataformas de pequeños satélites. Incluye el análisis de Parámetros de Dispersión (Parámetros S) y el desarrollo de arquitecturas para la generación y gestión de presupuestos energéticos en CubeSats.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Proyecto KANAN SIAFI: Visión Artificial y Drones</summary>
+            <div class="details-content">
+                <p><strong>Periodo:</strong> Sep 2021 - Ene 2022</p>
+                <p><strong>Descripción:</strong> Participación en el desarrollo e implementación de sistemas de visión artificial y rutinas de control para la operación de drones.</p>
+            </div>
+        </details>
     </section>
 
     <section>
