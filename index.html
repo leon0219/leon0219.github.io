@@ -49,7 +49,6 @@
             --modal-overlay: rgba(3, 7, 18, 0.8);
         }
 
-        /* FUENTE LIMPIA PARA TODO EL CUERPO */
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--bg-color);
@@ -88,7 +87,6 @@
             margin-bottom: 30px;
         }
 
-        /* TU FUENTE APLICADA SOLO A LOS TÍTULOS */
         h1 {
             font-family: 'ElectromagneticLungs', 'Roboto', sans-serif;
             margin: 0;
@@ -142,7 +140,6 @@
         }
         li { margin-bottom: 4px; }
 
-        /* Material Expansion Panels */
         details { border-bottom: 1px solid var(--divider-color); }
         details:last-child { border-bottom: none; }
 
@@ -173,7 +170,6 @@
             color: var(--text-secondary);
         }
 
-        /* Botón interactivo */
         .md-btn {
             background: transparent;
             border: 1px solid var(--accent-color);
@@ -183,6 +179,8 @@
             font-family: 'Roboto', sans-serif;
             font-weight: 500;
             text-transform: uppercase;
+            text-decoration: none;
+            display: inline-block;
             letter-spacing: 0.08928em;
             cursor: pointer;
             border-radius: 6px;
@@ -193,7 +191,6 @@
             color: var(--bg-color);
         }
 
-        /* Chips */
         .chip-container {
             display: flex;
             flex-wrap: wrap;
@@ -214,14 +211,13 @@
             background-color: rgba(52, 211, 153, 0.1);
         }
         
-        /* Chip Clickeable Especial para Altium */
         .chip.clickable {
             cursor: pointer;
             position: relative;
-            padding-right: 25px; /* Espacio para el ícono */
+            padding-right: 25px;
         }
         .chip.clickable::after {
-            content: '👁️'; /* Icono de ojo para indicar visualización */
+            content: '👁️';
             position: absolute;
             right: 8px;
             font-size: 0.8rem;
@@ -233,9 +229,8 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
-        /* Estilos del Modal (Ventana Emergente) */
         .modal-overlay {
-            display: none; /* Oculto por defecto */
+            display: none;
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -260,7 +255,7 @@
             position: relative;
             width: 90%;
             max-width: 600px;
-            margin-top: -50px; /* Sube un poco para centrar mejor visualmente */
+            margin-top: -50px;
         }
 
         .close-btn {
@@ -346,6 +341,9 @@
                     <p><strong>Rol:</strong> Autor principal.</p>
                     <p><strong>Evento:</strong> 76th International Astronautical Congress (Sídney, Australia - Sep 2025).</p>
                     <p><strong>Descripción:</strong> Presentación del artículo <em>"Microfluidic technologies for the search for life on icy moons"</em>. Investigación enfocada en el desarrollo y aplicación de tecnologías microfluídicas viables para la exploración planetaria in-situ y astrobiología.</p>
+                    <div style="margin-top: 15px;">
+                        <a href="https://iac2025-iaf.ipostersessions.com/Default.aspx?s=08-FC-E7-FB-AC-77-A3-E1-AB-BC-86-E8-54-EF-EC-F8" target="_blank" class="md-btn">Ver iPoster Interactivo</a>
+                    </div>
                 </div>
             </details>
 
@@ -415,7 +413,7 @@
         const btn = document.getElementById('themeToggle');
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.body.classList.add('dark-mode');
-            btn.textContent = 'Modo Claro ';
+            btn.textContent = 'Modo Claro';
         }
         btn.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
@@ -431,19 +429,16 @@
         const altiumChip = document.getElementById('altium-chip');
         const closeModal = document.getElementById('close-modal');
 
-        // Abrir modal
         altiumChip.addEventListener('click', () => {
             modal.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Evita hacer scroll de la página de fondo
+            document.body.style.overflow = 'hidden';
         });
 
-        // Cerrar modal al tocar la X
         closeModal.addEventListener('click', () => {
             modal.classList.remove('show');
-            document.body.style.overflow = 'auto'; // Restaura el scroll
+            document.body.style.overflow = 'auto';
         });
 
-        // Cerrar modal al hacer clic fuera de la tarjeta
         window.addEventListener('click', (event) => {
             if (event.target === modal) {
                 modal.classList.remove('show');
