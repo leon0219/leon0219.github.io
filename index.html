@@ -7,6 +7,8 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    
     <style>
         /* 1. IMPORTAR TU FUENTE PERSONALIZADA */
         @font-face {
@@ -27,6 +29,7 @@
             --divider-color: #bae6fd;
             --card-blur: 0px;
             --shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.1), 0 2px 4px -1px rgba(2, 132, 199, 0.06);
+            --modal-overlay: rgba(224, 247, 250, 0.8);
         }
 
         /* MODO OSCURO: Espacio y Aurora Boreal */
@@ -43,9 +46,10 @@
             --divider-color: rgba(255, 255, 255, 0.08);
             --card-blur: 12px;
             --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.6);
+            --modal-overlay: rgba(3, 7, 18, 0.8);
         }
 
-        /* 2. FUENTE LIMPIA PARA TODO EL CUERPO */
+        /* FUENTE LIMPIA PARA TODO EL CUERPO */
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--bg-color);
@@ -84,11 +88,11 @@
             margin-bottom: 30px;
         }
 
-        /* 3. TU FUENTE APLICADA SOLO A LOS TÍTULOS */
+        /* TU FUENTE APLICADA SOLO A LOS TÍTULOS */
         h1 {
             font-family: 'ElectromagneticLungs', 'Roboto', sans-serif;
             margin: 0;
-            font-size: 2.8rem; /* Un poco más grande para que la fuente luzca */
+            font-size: 2.8rem;
             font-weight: normal;
             letter-spacing: 1px;
         }
@@ -204,11 +208,77 @@
             border-radius: 16px;
             font-size: 0.875rem;
             font-weight: 500;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
         body.dark-mode .chip {
             background-color: rgba(52, 211, 153, 0.1);
         }
+        
+        /* Chip Clickeable Especial para Altium */
+        .chip.clickable {
+            cursor: pointer;
+            position: relative;
+            padding-right: 25px; /* Espacio para el ícono */
+        }
+        .chip.clickable::after {
+            content: '👁️'; /* Icono de ojo para indicar visualización */
+            position: absolute;
+            right: 8px;
+            font-size: 0.8rem;
+        }
+        .chip.clickable:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Estilos del Modal (Ventana Emergente) */
+        .modal-overlay {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-overlay);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+            margin-top: -50px; /* Sube un poco para centrar mejor visualmente */
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-secondary);
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.2s;
+        }
+        
+        .close-btn:hover {
+            color: var(--accent-color);
+        }
+
     </style>
 </head>
 <body>
@@ -216,7 +286,7 @@
     <div class="container">
         <header>
             <div>
-                <h1>Leonardo Nicolás Hernández</h1>
+                <h1>Leonardo N. Hernández</h1>
                 <div class="header-subtitle">Ingeniería Eléctrica y Electrónica</div>
             </div>
             <button class="md-btn" id="themeToggle">Modo Oscuro</button>
@@ -300,7 +370,7 @@
             <h2>Habilidades Técnicas</h2>
             <div class="title-row" style="margin-bottom: 8px;">Software & Lenguajes</div>
             <div class="chip-container">
-                <span class="chip">Altium Designer</span>
+                <span class="chip clickable" id="altium-chip" title="Ver diseño 3D">Altium Designer</span>
                 <span class="chip">MATLAB</span>
                 <span class="chip">Simulink</span>
                 <span class="chip">Python</span>
@@ -317,20 +387,67 @@
         </section>
     </div>
 
+    <div class="modal-overlay" id="3d-modal">
+        <div class="card modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <h2 style="margin-bottom: 10px;">Diseño PCB: Altium</h2>
+            <p style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 15px;">Exploración interactiva del ruteo y componentes de hardware.</p>
+            
+            <div style="border-radius: 8px; overflow: hidden; border: 1px solid var(--divider-color);">
+                <model-viewer 
+                    src="board1.glb" 
+                    alt="Modelo 3D de diseño de PCB en Altium" 
+                    auto-rotate 
+                    camera-controls 
+                    shadow-intensity="1"
+                    style="width: 100%; height: 400px; background-color: rgba(0,0,0,0.1);">
+                </model-viewer>
+            </div>
+            
+            <p style="text-align: center; font-size: 0.8em; color: var(--text-secondary); margin-top: 10px; margin-bottom: 0;">
+                <em>Arrastra para rotar, usa la rueda para hacer zoom.</em>
+            </p>
+        </div>
+    </div>
+
     <script>
+        // Lógica del Modo Oscuro/Claro
         const btn = document.getElementById('themeToggle');
-        
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.body.classList.add('dark-mode');
-            btn.textContent = 'Modo Claro';
+            btn.textContent = 'Modo Cielo';
         }
-
         btn.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             if (document.body.classList.contains('dark-mode')) {
-                btn.textContent = 'Modo Claro';
+                btn.textContent = 'Modo Cielo';
             } else {
-                btn.textContent = 'Modo Oscuro';
+                btn.textContent = 'Modo Aurora';
+            }
+        });
+
+        // Lógica del Modal 3D
+        const modal = document.getElementById('3d-modal');
+        const altiumChip = document.getElementById('altium-chip');
+        const closeModal = document.getElementById('close-modal');
+
+        // Abrir modal
+        altiumChip.addEventListener('click', () => {
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Evita hacer scroll de la página de fondo
+        });
+
+        // Cerrar modal al tocar la X
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto'; // Restaura el scroll
+        });
+
+        // Cerrar modal al hacer clic fuera de la tarjeta
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
             }
         });
     </script>
