@@ -415,14 +415,14 @@
         const btn = document.getElementById('themeToggle');
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.body.classList.add('dark-mode');
-            btn.textContent = 'Modo Cielo';
+            btn.textContent = 'Modo Claro ';
         }
         btn.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             if (document.body.classList.contains('dark-mode')) {
-                btn.textContent = 'Modo Cielo';
+                btn.textContent = 'Modo Claro';
             } else {
-                btn.textContent = 'Modo Aurora';
+                btn.textContent = 'Modo Oscuro';
             }
         });
 
